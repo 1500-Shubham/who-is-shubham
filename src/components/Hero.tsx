@@ -1,10 +1,47 @@
+import { useState } from 'react'
 import { Reveal } from './Reveal'
 import Magnetic from './Magnetic'
 import Typewriter from './Typewriter'
-import CountUp from './CountUp'
+import ScrambleText from './ScrambleText'
 import HeroScene from '../three/HeroScene'
 import { GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
-import { heroStats, links, roles } from '../data/resume'
+import { clients, links, roles } from '../data/resume'
+import type { Client } from '../data/resume'
+
+// each letter of the name is its own hoverable, poppable span
+function Letters({ word }: { word: string }) {
+  return (
+    <>
+      {word.split('').map((ch, i) => (
+        <span className="ltr" key={i}>
+          {ch}
+        </span>
+      ))}
+    </>
+  )
+}
+
+// client logo on a light chip; branded monogram when no image exists
+function ClientMark({ client }: { client: Client }) {
+  const [failed, setFailed] = useState(false)
+  if (client.logo && !failed) {
+    return (
+      <img
+        className="client-logo"
+        src={client.logo}
+        alt=""
+        loading="lazy"
+        draggable={false}
+        onError={() => setFailed(true)}
+      />
+    )
+  }
+  return (
+    <span className="client-badge" style={{ background: client.badgeBg }} aria-hidden>
+      {client.initials ?? client.name[0]}
+    </span>
+  )
+}
 
 export default function Hero() {
   return (
@@ -20,9 +57,9 @@ export default function Hero() {
 
           <Reveal delay={0.08}>
             <h1 className="hero-name">
-              Shubham
+              <Letters word="Shubham" />
               <br />
-              Keshari
+              <Letters word="Keshari" />
             </h1>
           </Reveal>
 
@@ -36,10 +73,9 @@ export default function Hero() {
 
           <Reveal delay={0.24}>
             <p className="hero-copy">
-              I architect <strong>AI-driven platforms</strong> end to end — from{' '}
-              <strong>Crediverse</strong>, a loan-processing engine powering India's top NBFCs, to
-              agentic assistants grounded in real banking policy. Systems thinking, production
-              scale, measurable impact.
+              I build <strong>AI agents</strong> and the platforms beneath them — specialized in{' '}
+              <strong>backend systems, cloud infrastructure and observability</strong> that hold up
+              in production.
             </p>
           </Reveal>
 
@@ -47,12 +83,12 @@ export default function Hero() {
             <div className="hero-ctas">
               <Magnetic>
                 <a className="btn btn-primary" href="#experience">
-                  Explore my work <span aria-hidden>↓</span>
+                  <ScrambleText text="Explore my work" /> <span aria-hidden>↓</span>
                 </a>
               </Magnetic>
               <Magnetic>
                 <a className="btn btn-ghost" href="#mira">
-                  Meet MIRA
+                  <ScrambleText text="Meet MIRA" />
                 </a>
               </Magnetic>
               <div className="hero-social">
@@ -69,18 +105,6 @@ export default function Hero() {
             </div>
           </Reveal>
 
-          <Reveal delay={0.4}>
-            <div className="hero-stats">
-              {heroStats.map((s) => (
-                <div className="stat" key={s.label}>
-                  <div className="stat-num">
-                    <CountUp to={s.value} suffix={s.suffix} />
-                  </div>
-                  <div className="stat-label">{s.label}</div>
-                </div>
-              ))}
-            </div>
-          </Reveal>
         </div>
 
         <div className="hero-canvas">
@@ -88,10 +112,21 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="scroll-hint" aria-hidden>
-        <div className="mouse" />
-        <span>scroll</span>
-      </div>
+      <Reveal delay={0.4} className="clients">
+        <div className="container">
+          <div className="clients-label">// clients &amp; platforms I've shipped for</div>
+        </div>
+        <div className="clients-marquee" aria-label="Clients">
+          <div className="clients-track">
+            {[...clients, ...clients, ...clients, ...clients].map((c, i) => (
+              <span className="client-item" key={`${c.name}-${i}`}>
+                <ClientMark client={c} />
+                {c.name}
+              </span>
+            ))}
+          </div>
+        </div>
+      </Reveal>
     </section>
   )
 }

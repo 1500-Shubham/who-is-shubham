@@ -1,6 +1,7 @@
 import { useRef, useState } from 'react'
 import { Reveal } from './Reveal'
 import Magnetic from './Magnetic'
+import ScrambleText from './ScrambleText'
 import { GitHubIcon, LinkedInIcon, MailIcon, PhoneIcon } from './Icons'
 import { links } from '../data/resume'
 
@@ -38,7 +39,7 @@ export default function Footer() {
             <div className="contact-ctas">
               <Magnetic>
                 <a className="btn btn-primary" href={`mailto:${links.email}`}>
-                  <MailIcon size={18} /> Say hello
+                  <MailIcon size={18} /> <ScrambleText text="Say hello" />
                 </a>
               </Magnetic>
               <Magnetic>

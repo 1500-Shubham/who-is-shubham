@@ -1,6 +1,8 @@
 import { Section, Reveal } from './Reveal'
 import Magnetic from './Magnetic'
 import Typewriter from './Typewriter'
+import ScrambleText from './ScrambleText'
+import ShotGallery from './ShotGallery'
 import MiraHologram from '../three/MiraHologram'
 import { ArrowUpRight, GitHubIcon } from './Icons'
 import { links, mira } from '../data/resume'
@@ -69,18 +71,24 @@ export default function Mira() {
             <div className="mira-ctas">
               <Magnetic>
                 <a className="btn btn-primary" href={mira.repo} target="_blank" rel="noreferrer">
-                  <GitHubIcon size={18} /> View MIRA on GitHub <ArrowUpRight size={16} />
+                  <GitHubIcon size={18} /> <ScrambleText text="View MIRA on GitHub" /> <ArrowUpRight size={16} />
                 </a>
               </Magnetic>
               <Magnetic>
                 <a className="btn btn-ghost" href={links.github} target="_blank" rel="noreferrer">
-                  More projects
+                  <ScrambleText text="More projects" />
                 </a>
               </Magnetic>
             </div>
           </Reveal>
         </div>
       </div>
+
+      <Reveal delay={0.1}>
+        <div className="mira-gallery">
+          <ShotGallery shots={mira.shots} label="// inside MIRA — chat · agent graph · generated guide" />
+        </div>
+      </Reveal>
     </Section>
   )
 }

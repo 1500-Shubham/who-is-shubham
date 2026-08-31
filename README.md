@@ -2,9 +2,10 @@
 
 Single-page 3D portfolio for **Shubham Keshari** — AI Engineer.
 
-Deep-space theme with aurora accents, an interactive Three.js hero, and **MIRA rendered as a
-live particle hologram** (~5k GPU particles that assemble from stardust on scroll and flinch
-away from your cursor).
+Deep-space theme with aurora accents (plus a **light theme** — toggle in the navbar, persisted
+per visitor), an interactive Three.js hero where **MIRA greets visitors as a live particle
+hologram** (~5k GPU particles that flinch away from the cursor; click her to jump to her
+section), a running clients strip, and a highlight-reel metrics section.
 
 ## Stack
 
@@ -41,9 +42,15 @@ education, honors.
 
 ### Add your 3D photo (future)
 
-Drop a square-ish photo at **`public/avatar.jpg`** and redeploy — the hero's neural-core orb
-is automatically replaced by a floating holographic photo disc with orbit rings
-(see `Centerpiece` in [`src/three/HeroScene.tsx`](src/three/HeroScene.tsx)). No code change needed.
+Drop a square-ish photo at **`public/avatar.jpg`** and redeploy — MIRA hands the hero over to
+a floating holographic photo disc with orbit rings (she keeps living in her own section).
+See `Centerpiece` in [`src/three/HeroScene.tsx`](src/three/HeroScene.tsx). No code change needed.
+
+### Workflow & product snapshots
+
+Every experience card and the MIRA section carry a horizontally scrollable (drag-enabled)
+strip of illustrated snapshots — hand-drawn animated SVGs in `public/showcase/`. Swap any
+file (same name) or edit the lists in `src/data/resume.ts` to add/remove shots.
 
 ### Company logos
 
@@ -53,13 +60,13 @@ LTI currently uses the monogram fallback; drop a `public/logos/lti.png` to overr
 
 ## Section map
 
-| Section      | File                            | Notable bits                                     |
-| ------------ | ------------------------------- | ------------------------------------------------ |
-| Hero         | `components/Hero.tsx`           | typewriter roles, count-up stats, 3D neural core |
-| Experience   | `components/Experience.tsx`     | timeline, tilt cards, gradient metric highlights |
-| MIRA         | `components/Mira.tsx`           | particle hologram + typed speech bubble          |
-| Skills       | `components/Skills.tsx`         | marquee + tilt panels                            |
-| Education    | `components/Education.tsx`      | education & honors                               |
-| Contact      | `components/Footer.tsx`         | copy-to-clipboard email, magnetic CTAs           |
+| Section      | File                            | Notable bits                                            |
+| ------------ | ------------------------------- | ------------------------------------------------------- |
+| Hero         | `components/Hero.tsx`           | typewriter, count-up stats, 3D MIRA (click → her section)|
+| Experience   | `components/Experience.tsx`     | timeline, tilt cards, snapshot galleries                 |
+| MIRA         | `components/Mira.tsx`           | particle hologram, speech bubble, product gallery        |
+| Skills       | `components/Skills.tsx`         | marquee + tilt panels                                    |
+| Education    | `components/Education.tsx`      | education & honors                                       |
+| Contact      | `components/Footer.tsx`         | copy-to-clipboard email, magnetic CTAs                   |
 
 3D scenes live in `src/three/` and pause rendering (`frameloop="never"`) while offscreen.

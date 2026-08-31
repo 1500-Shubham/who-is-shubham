@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react'
 import { links } from '../data/resume'
 import { GitHubIcon, LinkedInIcon } from './Icons'
+import ThemeToggle from './ThemeToggle'
 
 const NAV = [
+  { id: 'impact', label: 'Impact' },
   { id: 'experience', label: 'Experience' },
   { id: 'mira', label: 'MIRA' },
   { id: 'skills', label: 'Skills' },
@@ -59,6 +61,7 @@ export default function Navbar() {
         </nav>
 
         <div className="nav-cta">
+          <ThemeToggle />
           <a className="icon-btn" href={links.github} target="_blank" rel="noreferrer" aria-label="GitHub">
             <GitHubIcon size={18} />
           </a>

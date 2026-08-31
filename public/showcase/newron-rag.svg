@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340" font-family="system-ui, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38e1ff"/><stop offset="1" stop-color="#8b7bff"/>
+    </linearGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#5ac8ff"/>
+    </marker>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="rgba(140,160,255,0.06)"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="340" fill="#070a18"/>
+  <rect width="560" height="340" fill="url(#grid)"/>
+  <circle cx="90" cy="60" r="70" fill="rgba(56,190,255,0.05)"/>
+
+  <text x="24" y="34" font-size="13" font-weight="600" letter-spacing="3" fill="#8fa0d8">AGENTIC BANKING ASSISTANT</text>
+  <rect x="24" y="44" width="46" height="2" fill="url(#acc)"/>
+  <rect x="404" y="16" width="134" height="22" rx="11" fill="rgba(56,190,255,0.08)" stroke="rgba(90,200,255,0.3)"/>
+  <text x="471" y="31" font-size="11" font-family="Consolas, monospace" fill="#9fd8f2" text-anchor="middle">grounded · cited</text>
+
+  <!-- chat panel -->
+  <rect x="24" y="64" width="244" height="244" rx="12" fill="rgba(148,163,255,0.05)" stroke="rgba(150,180,255,0.3)"/>
+  <circle cx="46" cy="88" r="9" fill="url(#acc)"/>
+  <text x="62" y="92" font-size="11.5" fill="#dfe6ff" font-weight="600">policy copilot</text>
+  <circle cx="252" cy="88" r="3.5" fill="#5ff2c0">
+    <animate attributeName="opacity" values="1;0.3;1" dur="1.8s" repeatCount="indefinite"/>
+  </circle>
+  <line x1="36" y1="102" x2="256" y2="102" stroke="rgba(150,180,255,0.18)"/>
+
+  <rect x="104" y="116" width="150" height="32" rx="9" fill="rgba(139,123,255,0.18)" stroke="rgba(139,123,255,0.35)"/>
+  <text x="179" y="136" font-size="10.5" fill="#e6e1ff" text-anchor="middle">LTV cap for edu loans?</text>
+
+  <rect x="38" y="162" width="186" height="66" rx="9" fill="rgba(56,190,255,0.10)" stroke="rgba(90,200,255,0.3)"/>
+  <text x="50" y="182" font-size="10.5" fill="#cfeaff">Max LTV is 90% for loans</text>
+  <text x="50" y="197" font-size="10.5" fill="#cfeaff">up to 7.5L, per lending policy.</text>
+  <rect x="48" y="206" width="86" height="16" rx="8" fill="rgba(95,242,192,0.10)" stroke="rgba(95,242,192,0.35)"/>
+  <text x="91" y="217.5" font-size="9" font-family="Consolas, monospace" fill="#8ff2cd" text-anchor="middle">policy §4.2 ↗</text>
+
+  <rect x="38" y="244" width="150" height="30" rx="9" fill="rgba(56,190,255,0.06)" stroke="rgba(90,200,255,0.2)"/>
+  <text x="50" y="263" font-size="10.5" fill="#8fd4f2">Generating report…</text>
+  <circle cx="172" cy="259" r="3" fill="#46c8ff">
+    <animate attributeName="opacity" values="0.2;1;0.2" dur="1s" repeatCount="indefinite"/>
+  </circle>
+
+  <!-- rag flow -->
+  <g>
+    <rect x="316" y="64" width="220" height="40" rx="10" fill="rgba(148,163,255,0.07)" stroke="rgba(150,180,255,0.35)"/>
+    <text x="426" y="82" font-size="11.5" fill="#dfe6ff" text-anchor="middle" font-weight="600">user query</text>
+    <text x="426" y="96" font-size="9.5" fill="#8fa0d8" text-anchor="middle">intent + entities extracted</text>
+
+    <rect x="316" y="126" width="220" height="40" rx="10" fill="rgba(148,163,255,0.07)" stroke="rgba(150,180,255,0.35)"/>
+    <text x="426" y="144" font-size="11.5" fill="#dfe6ff" text-anchor="middle" font-weight="600">embed + retrieve</text>
+    <text x="426" y="158" font-size="9.5" fill="#8fa0d8" text-anchor="middle">semantic search, top-k</text>
+
+    <rect x="316" y="188" width="220" height="40" rx="10" fill="rgba(139,123,255,0.10)" stroke="rgba(139,123,255,0.45)"/>
+    <text x="426" y="206" font-size="11.5" fill="#e6e1ff" text-anchor="middle" font-weight="600">PGVector · private policies</text>
+    <text x="426" y="220" font-size="9.5" fill="#a99df2" text-anchor="middle">bank-internal knowledge base</text>
+
+    <rect x="316" y="250" width="220" height="40" rx="10" fill="rgba(148,163,255,0.07)" stroke="rgba(150,180,255,0.35)"/>
+    <text x="426" y="268" font-size="11.5" fill="#dfe6ff" text-anchor="middle" font-weight="600">tool orchestration</text>
+    <text x="426" y="282" font-size="9.5" fill="#8fa0d8" text-anchor="middle">report generation · lookups</text>
+  </g>
+
+  <g stroke="#46c8ff" stroke-width="1.6" stroke-dasharray="6 6" fill="none">
+    <line x1="426" y1="104" x2="426" y2="124" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.2s" repeatCount="indefinite"/></line>
+    <line x1="426" y1="166" x2="426" y2="186" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.2s" repeatCount="indefinite"/></line>
+    <line x1="426" y1="228" x2="426" y2="248" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.2s" repeatCount="indefinite"/></line>
+    <path d="M314 270 C 288 270 292 220 271 200" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.2s" repeatCount="indefinite"/></path>
+  </g>
+  <text x="284" y="246" font-size="9" fill="#8fa0d8" transform="rotate(-64 284 246)">grounded answer</text>
+</svg>

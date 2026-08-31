@@ -1,0 +1,60 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340" font-family="system-ui, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38e1ff"/><stop offset="1" stop-color="#8b7bff"/>
+    </linearGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#5ac8ff"/>
+    </marker>
+    <marker id="arrg" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#5ff2c0"/>
+    </marker>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="rgba(140,160,255,0.06)"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="340" fill="#070a18"/>
+  <rect width="560" height="340" fill="url(#grid)"/>
+
+  <text x="24" y="34" font-size="13" font-weight="600" letter-spacing="3" fill="#8fa0d8">SERVERLESS INFERENCE</text>
+  <rect x="24" y="44" width="46" height="2" fill="url(#acc)"/>
+  <rect x="410" y="16" width="128" height="22" rx="11" fill="rgba(56,190,255,0.08)" stroke="rgba(90,200,255,0.3)"/>
+  <text x="474" y="31" font-size="11" font-family="Consolas, monospace" fill="#9fd8f2" text-anchor="middle">pay-per-invoke</text>
+
+  <!-- flow -->
+  <rect x="28" y="108" width="86" height="50" rx="10" fill="rgba(148,163,255,0.07)" stroke="rgba(150,180,255,0.35)"/>
+  <text x="71" y="129" font-size="11.5" fill="#dfe6ff" text-anchor="middle" font-weight="600">client</text>
+  <text x="71" y="145" font-size="9.5" fill="#8fa0d8" text-anchor="middle">ticket text</text>
+
+  <rect x="148" y="108" width="98" height="50" rx="10" fill="rgba(56,190,255,0.08)" stroke="rgba(90,200,255,0.45)"/>
+  <text x="197" y="129" font-size="11.5" fill="#cfeaff" text-anchor="middle" font-weight="600">FastAPI</text>
+  <text x="197" y="145" font-size="9.5" fill="#8fd4f2" text-anchor="middle">/predict</text>
+
+  <rect x="280" y="108" width="112" height="50" rx="10" fill="rgba(255,154,61,0.08)" stroke="rgba(255,154,61,0.5)"/>
+  <text x="336" y="129" font-size="11.5" fill="#ffd9b0" text-anchor="middle" font-weight="600">λ AWS Lambda</text>
+  <text x="336" y="145" font-size="9.5" fill="#d8a878" text-anchor="middle">model runtime</text>
+
+  <rect x="426" y="108" width="106" height="50" rx="10" fill="rgba(148,163,255,0.07)" stroke="rgba(150,180,255,0.35)"/>
+  <text x="479" y="129" font-size="11.5" fill="#dfe6ff" text-anchor="middle" font-weight="600">S3</text>
+  <text x="479" y="145" font-size="9.5" fill="#8fa0d8" text-anchor="middle">weights + artifacts</text>
+
+  <g stroke="#46c8ff" stroke-width="1.6" stroke-dasharray="6 6" fill="none">
+    <line x1="114" y1="133" x2="146" y2="133" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.2s" repeatCount="indefinite"/></line>
+    <line x1="246" y1="133" x2="278" y2="133" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.2s" repeatCount="indefinite"/></line>
+    <line x1="392" y1="133" x2="424" y2="133" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.2s" repeatCount="indefinite"/></line>
+  </g>
+
+  <!-- response path -->
+  <path d="M336 160 C 300 214 140 214 76 162" stroke="#5ff2c0" stroke-width="1.6" fill="none" stroke-dasharray="6 6" marker-end="url(#arrg)">
+    <animate attributeName="stroke-dashoffset" values="24;0" dur="1.2s" repeatCount="indefinite"/>
+  </path>
+  <rect x="164" y="196" width="86" height="24" rx="12" fill="rgba(95,242,192,0.10)" stroke="rgba(95,242,192,0.45)"/>
+  <text x="207" y="212" font-size="11" font-family="Consolas, monospace" fill="#b8ffe2" text-anchor="middle">&lt;250ms</text>
+
+  <!-- latency sparkline -->
+  <text x="356" y="234" font-size="10" fill="#8fa0d8" letter-spacing="1.5">LATENCY · P50</text>
+  <polyline points="356,296 380,282 404,286 428,268 452,272 476,258 500,254 524,248"
+    fill="none" stroke="url(#acc)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+  <line x1="356" y1="302" x2="524" y2="302" stroke="rgba(150,180,255,0.2)"/>
+  <text x="524" y="242" font-size="9" font-family="Consolas, monospace" fill="#8ff2cd" text-anchor="end">warm starts ▼</text>
+</svg>

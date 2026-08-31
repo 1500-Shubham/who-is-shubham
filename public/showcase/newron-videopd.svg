@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340" font-family="system-ui, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38e1ff"/><stop offset="1" stop-color="#8b7bff"/>
+    </linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="rgba(140,160,255,0.06)"/>
+    </pattern>
+    <clipPath id="tile"><rect x="40" y="96" width="300" height="190" rx="10"/></clipPath>
+  </defs>
+  <rect width="560" height="340" fill="#070a18"/>
+  <rect width="560" height="340" fill="url(#grid)"/>
+
+  <text x="24" y="34" font-size="13" font-weight="600" letter-spacing="3" fill="#8fa0d8">VIDEOPD · REMOTE VERIFICATION</text>
+  <rect x="24" y="44" width="46" height="2" fill="url(#acc)"/>
+  <rect x="400" y="16" width="138" height="22" rx="11" fill="rgba(95,242,192,0.08)" stroke="rgba(95,242,192,0.3)"/>
+  <text x="469" y="31" font-size="11" font-family="Consolas, monospace" fill="#8ff2cd" text-anchor="middle">10K+ mins saved</text>
+
+  <!-- video tile -->
+  <rect x="40" y="96" width="300" height="190" rx="10" fill="#0a0f22" stroke="rgba(150,180,255,0.3)"/>
+  <g clip-path="url(#tile)">
+    <circle cx="190" cy="168" r="27" fill="rgba(56,190,255,0.10)" stroke="#46c8ff" stroke-width="1.5"/>
+    <path d="M132 286 Q190 208 248 286" fill="rgba(56,190,255,0.10)" stroke="#46c8ff" stroke-width="1.5"/>
+    <rect x="252" y="216" width="76" height="58" rx="8" fill="#0d1430" stroke="rgba(150,180,255,0.35)"/>
+    <circle cx="290" cy="238" r="10" fill="rgba(139,123,255,0.18)" stroke="#8b7bff"/>
+    <path d="M270 274 Q290 252 310 274" fill="rgba(139,123,255,0.18)" stroke="#8b7bff"/>
+  </g>
+  <circle cx="58" cy="112" r="4" fill="#ff5470">
+    <animate attributeName="opacity" values="1;0.25;1" dur="1.2s" repeatCount="indefinite"/>
+  </circle>
+  <text x="68" y="116" font-size="9.5" font-family="Consolas, monospace" fill="#ff9db4">REC</text>
+  <text x="324" y="116" font-size="9.5" font-family="Consolas, monospace" fill="#8fa0d8" text-anchor="end">Cloudflare RealtimeKit</text>
+
+  <!-- transcript -->
+  <text x="356" y="106" font-size="10" fill="#8fa0d8" letter-spacing="1.5">LIVE TRANSCRIPT</text>
+  <rect x="356" y="114" width="180" height="70" rx="9" fill="rgba(148,163,255,0.05)" stroke="rgba(150,180,255,0.28)"/>
+  <text x="366" y="132" font-size="9.5" fill="#cfeaff">"…please confirm your</text>
+  <text x="366" y="146" font-size="9.5" fill="#cfeaff">current address for the</text>
+  <text x="366" y="160" font-size="9.5" fill="#cfeaff">loan application…"</text>
+  <rect x="366" y="166" width="104" height="13" rx="6.5" fill="rgba(56,190,255,0.09)" stroke="rgba(90,200,255,0.3)"/>
+  <text x="418" y="175.5" font-size="8.5" font-family="Consolas, monospace" fill="#9fd8f2" text-anchor="middle">AWS Transcribe</text>
+
+  <!-- checks -->
+  <text x="356" y="208" font-size="10" fill="#8fa0d8" letter-spacing="1.5">FRAUD CONTROLS</text>
+  <g font-size="10.5" font-family="Consolas, monospace">
+    <rect x="356" y="216" width="180" height="20" rx="6" fill="rgba(95,242,192,0.06)"/>
+    <text x="366" y="230" fill="#8ff2cd">✓ GeoTagging</text>
+    <rect x="356" y="240" width="180" height="20" rx="6" fill="rgba(95,242,192,0.06)"/>
+    <text x="366" y="254" fill="#8ff2cd">✓ GeoLive position</text>
+    <rect x="356" y="264" width="180" height="20" rx="6" fill="rgba(95,242,192,0.06)"/>
+    <text x="366" y="278" fill="#8ff2cd">✓ IP intelligence</text>
+  </g>
+
+  <text x="300" y="322" font-size="9.5" fill="#6b7398" text-anchor="middle">300,000+ km of customer travel avoided annually · full audit trail</text>
+</svg>

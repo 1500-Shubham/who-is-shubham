@@ -1,9 +1,10 @@
 import { Canvas, useFrame } from '@react-three/fiber'
-import { Float, MeshDistortMaterial, Sparkles } from '@react-three/drei'
+import { Float, Sparkles, useCursor } from '@react-three/drei'
 import { useInView } from 'framer-motion'
 import { useEffect, useMemo, useRef, useState } from 'react'
 import * as THREE from 'three'
 import type { ReactNode } from 'react'
+import { MiraFigure, HoloBase, ScanRing } from './MiraFigure'
 
 /* Slowly drifting starfield shell around the centerpiece */
 function Starfield() {
@@ -37,32 +38,37 @@ function Starfield() {
   )
 }
 
-/* The "neural core": a distorted glossy blob inside a slow counter-rotating wireframe */
-function NeuralCore() {
-  const wire = useRef<THREE.Mesh>(null!)
-  useFrame((_, dt) => {
-    wire.current.rotation.y -= dt * 0.12
-    wire.current.rotation.z += dt * 0.05
-  })
+/* MIRA greets visitors in the hero: hover and she reacts, click and she takes you to her section */
+function HeroMira({ onHover }: { onHover: (h: boolean) => void }) {
+  const hovered = useRef(false)
+  const [hover, setHover] = useState(false)
+  useCursor(hover)
+
+  const set = (h: boolean) => {
+    hovered.current = h
+    setHover(h)
+    onHover(h)
+  }
+
   return (
-    <Float speed={1.7} rotationIntensity={0.35} floatIntensity={1}>
-      <mesh>
-        <icosahedronGeometry args={[1.85, 6]} />
-        <MeshDistortMaterial
-          color="#4235a8"
-          emissive="#5b48e0"
-          emissiveIntensity={0.6}
-          roughness={0.15}
-          metalness={0.5}
-          distort={0.42}
-          speed={1.8}
-        />
+    <group position={[0, -0.45, 0]} scale={1.05}>
+      <MiraFigure active hovered={hovered} />
+      <HoloBase />
+      <ScanRing />
+      {/* invisible hit proxy so hover/click track her whole body */}
+      <mesh
+        position={[0, 0.2, 0]}
+        onPointerOver={(e) => {
+          e.stopPropagation()
+          set(true)
+        }}
+        onPointerOut={() => set(false)}
+        onClick={() => document.getElementById('mira')?.scrollIntoView({ behavior: 'smooth' })}
+      >
+        <cylinderGeometry args={[1.4, 1.4, 4.7, 10]} />
+        <meshBasicMaterial transparent opacity={0} depthWrite={false} />
       </mesh>
-      <mesh ref={wire} scale={1.28}>
-        <icosahedronGeometry args={[1.85, 1]} />
-        <meshBasicMaterial wireframe color="#38e1ff" transparent opacity={0.18} />
-      </mesh>
-    </Float>
+    </group>
   )
 }
 
@@ -92,12 +98,12 @@ function PhotoHolo({ tex }: { tex: THREE.Texture }) {
 
 /*
  * FUTURE PHOTO SLOT ─────────────────────────────────────────────
- * Drop a photo at  public/avatar.jpg  and redeploy: the neural core
- * is automatically replaced by a floating holographic photo disc.
- * No code change needed. A square-ish photo works best.
+ * Drop a photo at  public/avatar.jpg  and redeploy: MIRA hands the
+ * hero over to a floating holographic photo disc (she still lives
+ * in her own section below). No code change needed.
  * ────────────────────────────────────────────────────────────────
  */
-function Centerpiece() {
+function Centerpiece({ onHover }: { onHover: (h: boolean) => void }) {
   const [tex, setTex] = useState<THREE.Texture | null>(null)
 
   useEffect(() => {
@@ -119,29 +125,7 @@ function Centerpiece() {
     }
   }, [])
 
-  return tex ? <PhotoHolo tex={tex} /> : <NeuralCore />
-}
-
-/* Two tilted orbit rings around the centerpiece */
-function OrbitRings() {
-  const a = useRef<THREE.Mesh>(null!)
-  const b = useRef<THREE.Mesh>(null!)
-  useFrame((_, dt) => {
-    a.current.rotation.z += dt * 0.22
-    b.current.rotation.z -= dt * 0.16
-  })
-  return (
-    <>
-      <mesh ref={a} rotation={[1.25, 0.2, 0]}>
-        <torusGeometry args={[2.95, 0.012, 8, 120]} />
-        <meshBasicMaterial color="#38e1ff" transparent opacity={0.35} />
-      </mesh>
-      <mesh ref={b} rotation={[1.7, -0.35, 0.4]}>
-        <torusGeometry args={[3.35, 0.01, 8, 120]} />
-        <meshBasicMaterial color="#ff6ac2" transparent opacity={0.22} />
-      </mesh>
-    </>
-  )
+  return tex ? <PhotoHolo tex={tex} /> : <HeroMira onHover={onHover} />
 }
 
 /* Everything leans gently toward the cursor */
@@ -156,6 +140,7 @@ function Rig({ children }: { children: ReactNode }) {
 
 export default function HeroScene() {
   const wrap = useRef<HTMLDivElement>(null)
+  const [hint, setHint] = useState(false)
   const inView = useInView(wrap, { margin: '-10% 0px' })
 
   return (
@@ -166,17 +151,15 @@ export default function HeroScene() {
         camera={{ position: [0, 0, 8.5], fov: 45 }}
         gl={{ antialias: true, alpha: true }}
       >
-        <ambientLight intensity={0.55} />
-        <pointLight position={[6, 4, 6]} intensity={60} color="#8b7bff" />
-        <pointLight position={[-6, -3, 4]} intensity={45} color="#38e1ff" />
-        <pointLight position={[0, -2, -6]} intensity={40} color="#ff6ac2" />
         <Rig>
           <Starfield />
-          <Centerpiece />
-          <OrbitRings />
+          <Centerpiece onHover={setHint} />
           <Sparkles count={70} scale={7} size={2.2} speed={0.35} color="#9db4ff" opacity={0.6} />
         </Rig>
       </Canvas>
+      <div className={`hero-mira-hint ${hint ? 'show' : ''}`} aria-hidden>
+        ✦ that's MIRA — click to meet her ↓
+      </div>
     </div>
   )
 }

@@ -2,6 +2,7 @@ import CursorGlow from './components/CursorGlow'
 import ScrollProgress from './components/ScrollProgress'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import Highlights from './components/Highlights'
 import Experience from './components/Experience'
 import Mira from './components/Mira'
 import Skills from './components/Skills'
@@ -16,6 +17,7 @@ export default function App() {
       <Navbar />
       <main>
         <Hero />
+        <Highlights />
         <Experience />
         <Mira />
         <Skills />

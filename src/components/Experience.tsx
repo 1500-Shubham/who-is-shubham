@@ -1,6 +1,7 @@
 import { Section, Reveal } from './Reveal'
 import TiltCard from './TiltCard'
 import CompanyLogo from './CompanyLogo'
+import ShotGallery from './ShotGallery'
 import { experience } from '../data/resume'
 import { hl } from '../utils/hl'
 
@@ -49,6 +50,8 @@ export default function Experience() {
                       </span>
                     ))}
                   </div>
+
+                  {job.gallery.length > 0 && <ShotGallery shots={job.gallery} />}
                 </article>
               </TiltCard>
             </div>

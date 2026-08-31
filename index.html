@@ -10,6 +10,12 @@
     />
     <meta name="theme-color" content="#05060f" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <script>
+      // apply the saved theme before first paint to avoid a flash
+      try {
+        if (localStorage.getItem('theme') === 'light') document.documentElement.dataset.theme = 'light'
+      } catch (e) {}
+    </script>
     <meta property="og:title" content="Shubham Keshari · AI Engineer" />
     <meta
       property="og:description"

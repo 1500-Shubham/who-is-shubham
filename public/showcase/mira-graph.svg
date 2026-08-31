@@ -1,0 +1,70 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340" font-family="system-ui, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38e1ff"/><stop offset="1" stop-color="#8b7bff"/>
+    </linearGradient>
+    <marker id="arr" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6.5" markerHeight="6.5" orient="auto-start-reverse">
+      <path d="M0 0L10 5L0 10z" fill="#5ac8ff"/>
+    </marker>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="rgba(140,160,255,0.06)"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="340" fill="#070a18"/>
+  <rect width="560" height="340" fill="url(#grid)"/>
+
+  <text x="24" y="34" font-size="13" font-weight="600" letter-spacing="3" fill="#8fa0d8">AGENT GRAPH · LANGGRAPH</text>
+  <rect x="24" y="44" width="46" height="2" fill="url(#acc)"/>
+  <rect x="404" y="16" width="134" height="22" rx="11" fill="rgba(56,190,255,0.08)" stroke="rgba(90,200,255,0.3)"/>
+  <text x="471" y="31" font-size="11" font-family="Consolas, monospace" fill="#9fd8f2" text-anchor="middle">checkpointed</text>
+
+  <!-- intake -->
+  <rect x="24" y="146" width="104" height="52" rx="10" fill="rgba(148,163,255,0.07)" stroke="rgba(150,180,255,0.35)"/>
+  <text x="76" y="168" font-size="11.5" fill="#dfe6ff" text-anchor="middle" font-weight="600">intake</text>
+  <text x="76" y="184" font-size="9" fill="#8fa0d8" text-anchor="middle">LLM · pref weights</text>
+
+  <!-- parallel MCP tools -->
+  <g fill="rgba(56,190,255,0.07)" stroke="rgba(90,200,255,0.4)">
+    <rect x="170" y="70" width="118" height="44" rx="10"/>
+    <rect x="170" y="150" width="118" height="44" rx="10"/>
+    <rect x="170" y="230" width="118" height="44" rx="10"/>
+  </g>
+  <g text-anchor="middle">
+    <text x="229" y="89" font-size="10.5" fill="#cfeaff" font-weight="600">✈ flights</text>
+    <text x="229" y="104" font-size="8.5" font-family="Consolas, monospace" fill="#8fd4f2">MCP tools</text>
+    <text x="229" y="169" font-size="10.5" fill="#cfeaff" font-weight="600">🏨 stays</text>
+    <text x="229" y="184" font-size="8.5" font-family="Consolas, monospace" fill="#8fd4f2">MCP tools</text>
+    <text x="229" y="249" font-size="10.5" fill="#cfeaff" font-weight="600">🎯 activities</text>
+    <text x="229" y="264" font-size="8.5" font-family="Consolas, monospace" fill="#8fd4f2">MCP + RAG</text>
+  </g>
+
+  <!-- optimiser -->
+  <rect x="330" y="146" width="110" height="52" rx="10" fill="rgba(95,242,192,0.07)" stroke="rgba(95,242,192,0.5)"/>
+  <text x="385" y="168" font-size="11.5" fill="#b8ffe2" text-anchor="middle" font-weight="600">optimiser</text>
+  <text x="385" y="184" font-size="9" fill="#7fd9b4" text-anchor="middle">deterministic · no LLM</text>
+
+  <!-- hitl + guide -->
+  <rect x="470" y="94" width="68" height="44" rx="10" fill="rgba(255,196,107,0.08)" stroke="rgba(255,196,107,0.5)"/>
+  <text x="504" y="113" font-size="10.5" fill="#ffd9a3" text-anchor="middle" font-weight="600">HITL</text>
+  <text x="504" y="128" font-size="8.5" fill="#d8b489" text-anchor="middle">approve</text>
+
+  <rect x="470" y="206" width="68" height="44" rx="10" fill="rgba(139,123,255,0.10)" stroke="rgba(139,123,255,0.5)"/>
+  <text x="504" y="225" font-size="10.5" fill="#e6e1ff" text-anchor="middle" font-weight="600">guide</text>
+  <text x="504" y="240" font-size="8.5" fill="#a99df2" text-anchor="middle">Gemini art</text>
+
+  <!-- edges -->
+  <g stroke="#46c8ff" stroke-width="1.5" stroke-dasharray="6 6" fill="none">
+    <path d="M128 158 C 148 140 148 110 168 96" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.3s" repeatCount="indefinite"/></path>
+    <line x1="128" y1="172" x2="168" y2="172" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.3s" repeatCount="indefinite"/></line>
+    <path d="M128 186 C 148 204 148 234 168 248" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.3s" repeatCount="indefinite"/></path>
+    <path d="M288 96 C 310 110 310 140 328 156" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.3s" repeatCount="indefinite"/></path>
+    <line x1="288" y1="172" x2="328" y2="172" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.3s" repeatCount="indefinite"/></line>
+    <path d="M288 248 C 310 234 310 204 328 188" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.3s" repeatCount="indefinite"/></path>
+    <path d="M440 158 C 456 148 454 132 468 122" marker-end="url(#arr)"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.3s" repeatCount="indefinite"/></path>
+    <path d="M504 138 L 504 204" marker-end="url(#arr)" stroke="#ffc46b"><animate attributeName="stroke-dashoffset" values="24;0" dur="1.3s" repeatCount="indefinite"/></path>
+  </g>
+  <text x="76" y="222" font-size="8.5" font-family="Consolas, monospace" fill="#6b7398" text-anchor="middle">fixture mode = offline</text>
+  <text x="385" y="222" font-size="8.5" font-family="Consolas, monospace" fill="#6b7398" text-anchor="middle">rank vs constraints</text>
+
+  <text x="280" y="316" font-size="9.5" fill="#6b7398" text-anchor="middle">parallel research branches fan in · state checkpointed at every node</text>
+</svg>

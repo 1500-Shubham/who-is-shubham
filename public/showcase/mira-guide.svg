@@ -1,0 +1,72 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 340" font-family="system-ui, 'Segoe UI', sans-serif">
+  <defs>
+    <linearGradient id="acc" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#38e1ff"/><stop offset="1" stop-color="#8b7bff"/>
+    </linearGradient>
+    <linearGradient id="sunset" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#ffd9a3"/><stop offset="1" stop-color="#ff9a76"/>
+    </linearGradient>
+    <pattern id="grid" width="28" height="28" patternUnits="userSpaceOnUse">
+      <path d="M28 0H0V28" fill="none" stroke="rgba(140,160,255,0.06)"/>
+    </pattern>
+  </defs>
+  <rect width="560" height="340" fill="#070a18"/>
+  <rect width="560" height="340" fill="url(#grid)"/>
+
+  <text x="24" y="34" font-size="13" font-weight="600" letter-spacing="3" fill="#8fa0d8">GENERATED TRAVEL GUIDE</text>
+  <rect x="24" y="44" width="46" height="2" fill="url(#acc)"/>
+  <rect x="404" y="16" width="134" height="22" rx="11" fill="rgba(139,123,255,0.10)" stroke="rgba(139,123,255,0.4)"/>
+  <text x="471" y="31" font-size="11" font-family="Consolas, monospace" fill="#c2b8f5" text-anchor="middle">Gemini imagery</text>
+
+  <!-- pdf page -->
+  <rect x="152" y="70" width="200" height="252" rx="6" fill="#141a35" opacity="0.9" transform="translate(7 7)"/>
+  <rect x="152" y="70" width="200" height="252" rx="6" fill="#f4efe6"/>
+  <rect x="316" y="60" width="44" height="20" rx="5" fill="#e2574c"/>
+  <text x="338" y="74" font-size="10.5" fill="#fff" text-anchor="middle" font-weight="700">PDF</text>
+
+  <text x="172" y="106" font-size="21" fill="#2a2417" font-weight="700" letter-spacing="2">GOA</text>
+  <text x="172" y="122" font-size="9" fill="#7a6f58">5 days · beaches + seafood · under ₹60k</text>
+
+  <!-- illustration -->
+  <rect x="170" y="132" width="164" height="72" rx="7" fill="url(#sunset)"/>
+  <circle cx="300" cy="158" r="13" fill="#fff3d0"/>
+  <path d="M170 204 L206 168 L232 194 L258 172 L288 204 Z" fill="#c96f4a" opacity="0.85"/>
+  <path d="M170 204 L196 184 L222 204 Z" fill="#a85539"/>
+  <rect x="170" y="132" width="164" height="72" rx="7" fill="none" stroke="#d9cfba"/>
+
+  <!-- itinerary rows -->
+  <g font-size="9.5">
+    <circle cx="178" cy="224" r="3" fill="#e2574c"/>
+    <text x="188" y="228" fill="#2a2417" font-weight="700">Day 1</text>
+    <text x="224" y="228" fill="#6f6550">Baga beach · sunset shack</text>
+  </g>
+  <g font-size="9.5">
+    <circle cx="178" cy="248" r="3" fill="#38a0c8"/>
+    <text x="188" y="252" fill="#2a2417" font-weight="700">Day 2</text>
+    <text x="224" y="252" fill="#6f6550">Old Goa churches · spice farm</text>
+  </g>
+  <g font-size="9.5">
+    <circle cx="178" cy="272" r="3" fill="#7bab5e"/>
+    <text x="188" y="276" fill="#2a2417" font-weight="700">Day 3</text>
+    <text x="224" y="276" fill="#6f6550">Dudhsagar falls day trip</text>
+  </g>
+  <rect x="172" y="290" width="160" height="5" rx="2.5" fill="#e6ddc9"/>
+  <rect x="172" y="301" width="118" height="5" rx="2.5" fill="#ede5d3"/>
+
+  <!-- page thumbnails -->
+  <rect x="408" y="86" width="92" height="120" rx="5" fill="#f4efe6" opacity="0.85"/>
+  <rect x="416" y="96" width="76" height="34" rx="4" fill="#cfe4ea"/>
+  <rect x="416" y="138" width="76" height="5" rx="2.5" fill="#ddd3bd"/>
+  <rect x="416" y="150" width="58" height="5" rx="2.5" fill="#e6ddc9"/>
+  <rect x="416" y="162" width="68" height="5" rx="2.5" fill="#e6ddc9"/>
+  <text x="454" y="196" font-size="8.5" fill="#7a6f58" text-anchor="middle">page 2 · stays</text>
+
+  <rect x="420" y="222" width="92" height="86" rx="5" fill="#f4efe6" opacity="0.6"/>
+  <rect x="428" y="232" width="76" height="26" rx="4" fill="#ead9c4"/>
+  <rect x="428" y="266" width="60" height="5" rx="2.5" fill="#ddd3bd"/>
+  <rect x="428" y="278" width="70" height="5" rx="2.5" fill="#e6ddc9"/>
+  <text x="466" y="300" font-size="8.5" fill="#7a6f58" text-anchor="middle">page 3 · budget</text>
+
+  <text x="80" y="316" font-size="9.5" fill="#6b7398">day-wise · budget-fit ·</text>
+  <text x="80" y="330" font-size="9.5" fill="#6b7398">illustrated per stop</text>
+</svg>

@@ -5,7 +5,7 @@
 
 export const links = {
   github: 'https://github.com/1500-Shubham',
-  linkedin: 'https://www.linkedin.com/in/shubham-keshari',
+  linkedin: 'https://www.linkedin.com/in/shubham-keshari-b543301aa',
   email: 'contactshubham1511@gmail.com',
   phone: '+91 93090 77697',
   phoneHref: 'tel:+919309077697',
@@ -19,12 +19,45 @@ export const roles = [
   'Full-stack platform architecture',
 ]
 
-export const heroStats = [
-  { value: 5, suffix: '+', label: 'NBFCs on Crediverse' },
-  { value: 50, suffix: '%+', label: 'AWS cost reduction' },
-  { value: 300, suffix: 'K+', label: 'km travel saved / yr' },
-  { value: 1000, suffix: '+', label: 'concurrent sessions' },
+// running strip in the hero
+export interface Client {
+  name: string
+  logo?: string
+  initials?: string
+  badgeBg?: string
+}
+
+export const clients: Client[] = [
+  { name: 'YES Bank', logo: '/clients/yesbank.png' },
+  { name: 'Fedfina', initials: 'F', badgeBg: 'linear-gradient(135deg, #0b4fa0, #f5a623)' },
+  { name: 'Aditya Birla Finance (ABCL)', logo: '/clients/abcl.png' },
+  { name: 'Credila', initials: 'C', badgeBg: 'linear-gradient(135deg, #0a58c4, #18b592)' },
+  { name: 'Jio Cloud Platform', logo: '/clients/jiocloud.png' },
 ]
+
+// the highlight-reel section
+export const impact = {
+  featured: {
+    value: 5,
+    suffix: '+',
+    label: 'NBFCs run on Crediverse',
+    detail:
+      'One AI-driven loan platform serving five+ lenders — including Aditya Birla Finance, Credila, YES Bank and Fedfina — consolidated from multiple legacy systems into a single extensible product.',
+  },
+  stats: [
+    { value: 50, suffix: '%+', label: 'AWS cost reduction', note: 'reusable workflow pipelines' },
+    { value: 300, suffix: 'K+', label: 'km travel saved / yr', note: 'VideoPD remote verification' },
+    { value: 1000, suffix: '+', label: 'concurrent sessions', note: 'SSH/RDP via Guacamole' },
+    { value: 20, suffix: '+', label: 'environments observed', note: 'OpenTelemetry + SigNoz' },
+    { value: 96, suffix: '%', label: 'ML triage accuracy', note: 'BERT over 10K+ tickets' },
+    { value: 70, suffix: '%', label: 'test effort reduced', note: 'no-code Appium tooling' },
+  ],
+}
+
+export interface Shot {
+  src: string
+  caption: string
+}
 
 export interface Job {
   company: string
@@ -36,6 +69,7 @@ export interface Job {
   badgeBg: string
   bullets: string[]
   tags: string[]
+  gallery: Shot[]
 }
 
 export const experience: Job[] = [
@@ -56,6 +90,12 @@ export const experience: Job[] = [
       'Shipped enterprise audit logging and fraud detection — GeoTagging, GeoLive and IP-intelligence checks strengthening compliance controls.',
     ],
     tags: ['Agentic AI', 'RAG', 'PGVector', 'Node.js', 'AWS', 'OpenTelemetry', 'SigNoz'],
+    gallery: [
+      { src: '/showcase/newron-crediverse.svg', caption: 'Crediverse · loan journey' },
+      { src: '/showcase/newron-rag.svg', caption: 'Agentic assistant · RAG' },
+      { src: '/showcase/newron-observability.svg', caption: 'Observability · OTel + SigNoz' },
+      { src: '/showcase/newron-videopd.svg', caption: 'VideoPD · remote verification' },
+    ],
   },
   {
     company: 'Jio Platforms Limited',
@@ -73,6 +113,11 @@ export const experience: Job[] = [
       'Built Appium-based no-code automation tooling, reducing test-automation development effort by 70%.',
     ],
     tags: ['Java', 'Spring Boot', 'Apache Guacamole', 'Azure AD', 'Redis', 'Appium'],
+    gallery: [
+      { src: '/showcase/jio-gateway.svg', caption: 'Session gateway · Guacamole' },
+      { src: '/showcase/jio-sso.svg', caption: 'SAML SSO + TOTP 2FA' },
+      { src: '/showcase/jio-monitor.svg', caption: 'DB & Redis fleet monitor' },
+    ],
   },
   {
     company: 'Happay',
@@ -87,6 +132,10 @@ export const experience: Job[] = [
       'Automated document generation and delivery with Kafka and AWS S3, integrating third-party providers including Yellow.ai.',
     ],
     tags: ['Kafka', 'AWS S3', 'WhatsApp API', 'Yellow.ai'],
+    gallery: [
+      { src: '/showcase/happay-whatsapp.svg', caption: 'WhatsApp booking alerts' },
+      { src: '/showcase/happay-docgen.svg', caption: 'Doc pipeline · Kafka → S3' },
+    ],
   },
   {
     company: 'LTI Infotech',
@@ -100,6 +149,10 @@ export const experience: Job[] = [
       'Developed a serverless inference pipeline with FastAPI, AWS Lambda and S3, bringing prediction latency below 250ms.',
     ],
     tags: ['BERT', 'FastAPI', 'AWS Lambda', 'Neural Networks'],
+    gallery: [
+      { src: '/showcase/lti-bert.svg', caption: 'BERT ticket triage · 96%' },
+      { src: '/showcase/lti-serverless.svg', caption: 'Serverless inference · <250ms' },
+    ],
   },
 ]
 
@@ -125,6 +178,11 @@ export const mira = {
     { icon: '🔁', text: '<b>Streaming chat</b> with threads, checkpoints & human-in-the-loop gates before actions' },
   ],
   tech: ['FastAPI', 'LangGraph', 'MCP', 'Gemini', 'RAG', 'LangSmith', 'React', 'Bruno'],
+  shots: [
+    { src: '/showcase/mira-chat.svg', caption: 'streaming chat · HITL gate' },
+    { src: '/showcase/mira-graph.svg', caption: 'agent graph · LangGraph + MCP' },
+    { src: '/showcase/mira-guide.svg', caption: 'generated PDF travel guide' },
+  ] as Shot[],
 }
 
 export const skillGroups = [
