@@ -3,7 +3,7 @@ import Magnetic from './Magnetic'
 import Typewriter from './Typewriter'
 import ScrambleText from './ScrambleText'
 import ShotGallery from './ShotGallery'
-import MiraHologram from '../three/MiraHologram'
+import MiraPortrait from './MiraPortrait'
 import { ArrowUpRight, GitHubIcon } from './Icons'
 import { links, mira } from '../data/resume'
 
@@ -21,7 +21,7 @@ export default function Mira() {
       <div className="mira-wrap">
         <Reveal>
           <div className="mira-stage">
-            <MiraHologram />
+            <MiraPortrait />
 
             <div className="mira-bubble">
               <span className="who">MIRA</span>

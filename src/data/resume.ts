@@ -196,7 +196,7 @@ export const skillGroups = [
     title: 'Backend & AI',
     icon: '🧠',
     accent: '#8b7bff',
-    items: ['Agentic AI', 'RAG', 'Spring Boot', 'Node.js', 'Fastify', 'Django', 'Microservices'],
+    items: ['Agentic AI', 'RAG', 'LangChain', 'LangGraph', 'LangSmith', 'Spring Boot', 'Node.js', 'Fastify', 'Django', 'Microservices'],
   },
   {
     title: 'Cloud & DevOps',

@@ -1,3 +1,8 @@
+/* Tailwind v4 — imported first and kept in its own cascade layers so the
+   hand-written design system below always wins. Utilities are here for
+   shadcn-style components under src/components/ui. */
+@import "tailwindcss";
+
 /* ============================================================
    who-is-shubham · design system
    Deep-space base, aurora accents, glass surfaces, holo details
@@ -465,28 +470,109 @@ ul { list-style: none; }
 }
 .hero-canvas canvas { touch-action: pan-y; }
 
-.hero-mira-hint {
+/* WebGL black hole sitting behind the hero centrepiece. Masked to a soft oval
+   so it dissolves into the page instead of showing a black rectangle. */
+.hero-blackhole {
   position: absolute;
-  left: 50%;
-  bottom: 14px;
-  transform: translateX(-50%) translateY(8px);
-  font-family: var(--font-mono);
-  font-size: 11.5px;
-  color: #9fd8f2;
-  background: rgba(5, 10, 28, 0.82);
-  border: 1px solid rgba(90, 200, 255, 0.32);
-  padding: 8px 16px;
-  border-radius: 999px;
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  opacity: 0;
-  transition: opacity 0.3s ease, transform 0.3s ease;
+  inset: 0;
+  z-index: 0;
+  border-radius: inherit;
+  overflow: hidden;
   pointer-events: none;
-  white-space: nowrap;
+  -webkit-mask-image: radial-gradient(54% 58% at 50% 48%, #000 30%, transparent 100%);
+  mask-image: radial-gradient(54% 58% at 50% 48%, #000 30%, transparent 100%);
 }
-.hero-mira-hint.show {
-  opacity: 1;
-  transform: translateX(-50%) translateY(0);
+.hero-blackhole > div { background: transparent; }
+
+/* the box is already a dark plate in light mode, so let it fill edge to edge */
+[data-theme='light'] .hero-blackhole {
+  -webkit-mask-image: radial-gradient(78% 76% at 50% 48%, #000 58%, transparent 100%);
+  mask-image: radial-gradient(78% 76% at 50% 48%, #000 58%, transparent 100%);
+}
+
+/* agent carousel HUD — sits under the 3D stage in the hero */
+.agent-hud {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  pointer-events: none;
+}
+
+.agent-hud-card {
+  text-align: center;
+  background: rgba(5, 10, 28, 0.72);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 10px 20px 12px;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  min-width: 210px;
+}
+
+.agent-hud-top {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.agent-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 17px;
+  letter-spacing: 0.06em;
+}
+
+.agent-status {
+  font-family: var(--font-mono);
+  font-size: 9.5px;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid currentColor;
+}
+.agent-status.live { color: var(--mint); background: rgba(95, 242, 192, 0.08); }
+.agent-status.soon { color: var(--magenta); background: rgba(255, 106, 194, 0.08); }
+
+.agent-role {
+  margin-top: 3px;
+  font-size: 12.5px;
+  color: var(--muted);
+}
+
+.agent-tagline {
+  margin-top: 2px;
+  font-family: var(--font-mono);
+  font-size: 10.5px;
+  letter-spacing: 0.08em;
+  color: var(--faint);
+}
+
+.agent-dots {
+  display: flex;
+  gap: 8px;
+  pointer-events: auto;
+}
+
+.agent-dot {
+  width: 7px;
+  height: 7px;
+  padding: 0;
+  border-radius: 50%;
+  background: rgba(154, 163, 199, 0.32);
+  transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease;
+}
+.agent-dot:hover { transform: scale(1.35); }
+.agent-dot.on { transform: scale(1.25); }
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-dot { transition: none; }
 }
 
 /* per-letter name pop + button label scramble */
@@ -507,7 +593,160 @@ ul { list-style: none; }
 @media (max-width: 960px) {
   .hero { padding-top: 92px; }
   .hero-grid { grid-template-columns: 1fr; gap: 8px; }
-  .hero-canvas { height: 320px; order: 2; }
+  .hero-canvas { height: 380px; order: 2; }
+  .agent-hud { gap: 8px; bottom: 6px; }
+  .agent-hud-card { padding: 8px 16px 10px; min-width: 0; border-radius: 14px; }
+  .agent-name { font-size: 15px; }
+  .agent-role { font-size: 11.5px; }
+  .agent-tagline { font-size: 9.5px; }
+}
+
+/* ---------- agents roster grid ---------- */
+
+.agents-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.agent-card {
+  --accent: var(--cyan);
+  position: relative;
+  display: block;
+  padding: 18px 18px 20px;
+  border-radius: var(--radius);
+  background: var(--glass);
+  border: 1px solid var(--line);
+  overflow: hidden;
+  color: inherit;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+}
+/* accent wash from the top edge — gives each agent their own colour of light */
+.agent-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(80% 55% at 50% -10%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 70%);
+  pointer-events: none;
+}
+.agent-card:hover,
+.agent-card:focus-visible {
+  border-color: color-mix(in srgb, var(--accent) 45%, var(--line));
+  transform: translateY(-4px);
+  box-shadow: 0 34px 70px -40px color-mix(in srgb, var(--accent) 60%, transparent);
+}
+
+/* the stage each agent stands on */
+.agent-stage {
+  position: relative;
+  height: 252px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  perspective: 900px;
+}
+
+/* holographic pad — the "location" under their feet */
+.agent-pad {
+  position: absolute;
+  left: 50%;
+  bottom: 6px;
+  width: 74%;
+  height: 44px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, color-mix(in srgb, var(--accent) 34%, transparent), color-mix(in srgb, var(--accent) 8%, transparent) 60%, transparent);
+}
+.agent-pad::before,
+.agent-pad::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, transparent);
+}
+.agent-pad::after {
+  inset: 9px 16%;
+  border-color: color-mix(in srgb, var(--accent) 28%, transparent);
+}
+
+.agent-figure {
+  position: relative;
+  z-index: 1;
+}
+.agent-portrait {
+  height: 226px;
+  width: auto;
+  max-width: none;
+  filter: drop-shadow(0 22px 28px rgba(0, 0, 0, 0.55));
+  /* feet dissolve into the pad, so they read as projected onto it */
+  -webkit-mask-image: linear-gradient(#000 74%, transparent 100%);
+  mask-image: linear-gradient(#000 74%, transparent 100%);
+  user-select: none;
+}
+
+.agent-hand {
+  position: absolute;
+  right: 12%;
+  top: 30%;
+  z-index: 2;
+  width: 44px;
+  height: 44px;
+  color: var(--accent);
+  transform-origin: 72% 92%;
+  filter: drop-shadow(0 0 12px color-mix(in srgb, var(--accent) 70%, transparent));
+  pointer-events: none;
+}
+
+.agent-bubble {
+  position: absolute;
+  top: 8%;
+  left: 6%;
+  z-index: 2;
+  max-width: 76%;
+  font-family: var(--font-mono);
+  font-size: 11.5px;
+  line-height: 1.4;
+  padding: 8px 11px;
+  border-radius: 12px 12px 12px 4px;
+  background: rgba(5, 10, 28, 0.86);
+  border: 1px solid color-mix(in srgb, var(--accent) 45%, var(--line));
+  color: var(--ink);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  pointer-events: none;
+}
+
+.agent-meta { margin-top: 12px; }
+.agent-card-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+.agent-card .agent-name { font-size: 20px; color: var(--accent); }
+.agent-card .agent-role { font-size: 13.5px; margin-top: 4px; color: var(--muted); }
+.agent-card .agent-tagline { font-size: 11px; margin-top: 4px; }
+
+@media (max-width: 1024px) {
+  .agents-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width: 560px) {
+  .agents-grid { grid-template-columns: 1fr; }
+  .agent-stage { height: 236px; }
+  .agent-portrait { height: 210px; }
+}
+
+[data-theme='light'] .agent-bubble {
+  background: rgba(255, 255, 255, 0.92);
+  color: #1a1f3a;
+}
+[data-theme='light'] .agent-portrait {
+  filter: drop-shadow(0 22px 28px rgba(40, 50, 120, 0.28));
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .agent-card { transition: none; }
 }
 
 /* ---------- highlight reel ---------- */
@@ -883,6 +1122,50 @@ ul { list-style: none; }
   vertical-align: text-bottom;
   margin-left: 3px;
   animation: blink 0.9s steps(1) infinite;
+}
+
+/* MIRA on her stage — the portrait itself, resting on a holo pad. Static by
+   design: this section is about reading, so nothing here competes for attention. */
+.mira-portrait-wrap {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.mira-pad {
+  position: absolute;
+  left: 50%;
+  bottom: 34px;
+  width: 62%;
+  height: 72px;
+  transform: translateX(-50%);
+  border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(56, 225, 255, 0.30), rgba(56, 225, 255, 0.07) 60%, transparent);
+}
+.mira-pad::before,
+.mira-pad::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 1px solid rgba(56, 225, 255, 0.42);
+}
+.mira-pad::after {
+  inset: 14px 16%;
+  border-color: rgba(56, 225, 255, 0.26);
+}
+.mira-portrait {
+  position: relative;
+  z-index: 1;
+  height: 88%;
+  width: auto;
+  max-width: none;
+  margin-bottom: 42px;
+  filter: drop-shadow(0 26px 34px rgba(0, 0, 0, 0.55));
+  -webkit-mask-image: linear-gradient(#000 78%, transparent 100%);
+  mask-image: linear-gradient(#000 78%, transparent 100%);
+  user-select: none;
 }
 
 .mira-tag {

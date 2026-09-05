@@ -4,6 +4,7 @@ import Magnetic from './Magnetic'
 import Typewriter from './Typewriter'
 import ScrambleText from './ScrambleText'
 import HeroScene from '../three/HeroScene'
+import BlackHole from './ui/black-hole'
 import { GitHubIcon, LinkedInIcon, MailIcon } from './Icons'
 import { clients, links, roles } from '../data/resume'
 import type { Client } from '../data/resume'
@@ -108,6 +109,10 @@ export default function Hero() {
         </div>
 
         <div className="hero-canvas">
+          {/* lensed backdrop; MIRA's hologram renders on top of it */}
+          <div className="hero-blackhole" aria-hidden>
+            <BlackHole resolutionScale={0.8} quality={0.85} intensity={0.55} />
+          </div>
           <HeroScene />
         </div>
       </div>
