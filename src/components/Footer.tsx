@@ -78,7 +78,7 @@ export default function Footer() {
             <span style={{ color: 'var(--magenta)' }}>"shubham"</span> · © 2026
           </span>
           <span>
-            Designed & engineered by Shubham Keshari — React · Three.js · Framer Motion, on Vercel
+            Designed & engineered by Shubham Keshari
           </span>
         </div>
       </div>
