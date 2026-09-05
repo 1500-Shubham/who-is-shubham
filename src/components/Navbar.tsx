@@ -4,12 +4,13 @@ import { GitHubIcon, LinkedInIcon } from './Icons'
 import ThemeToggle from './ThemeToggle'
 
 const NAV = [
+  { id: 'identity', label: 'Identity' },
   { id: 'impact', label: 'Impact' },
+  { id: 'projects', label: 'Work' },
   { id: 'agents', label: 'Agents' },
   { id: 'experience', label: 'Experience' },
   { id: 'mira', label: 'MIRA' },
   { id: 'skills', label: 'Skills' },
-  { id: 'education', label: 'Education' },
   { id: 'contact', label: 'Contact' },
 ]
 
